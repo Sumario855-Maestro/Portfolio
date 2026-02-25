@@ -1136,6 +1136,19 @@ body::before {
     text-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
 }
 
+.skill-svg {
+    width: 40px;
+    height: 40px;
+    transition: var(--transition);
+    filter: brightness(0) saturate(100%) invert(42%) sepia(89%) saturate(2546%) hue-rotate(211deg) brightness(101%) contrast(96%);
+}
+
+.skill-item:hover .skill-svg {
+    transform: scale(1.1);
+    filter: brightness(0) saturate(100%) invert(56%) sepia(97%) saturate(525%) hue-rotate(198deg) brightness(101%) contrast(101%);
+    drop-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+}
+
 .skill-info {
     display: flex;
     justify-content: space-between;
