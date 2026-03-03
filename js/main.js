@@ -24,37 +24,22 @@ navLinks.forEach(link => {
 // SMOOTH SCROLLING
 // ===================================
 
-// Smooth scroll pour les liens
-navLinks.forEach(link => {
-    link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const targetId = link.getAttribute('href');
-        const targetSection = document.querySelector(targetId);
+// Smooth scroll simple pour les liens d'ancre
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        const href = this.getAttribute('href');
 
-        if (targetSection) {
-            const targetPosition = targetSection.offsetTop - 70;
-            const startPosition = window.pageYOffset;
-            const distance = targetPosition - startPosition;
-            const duration = 1000;
-            let start = null;
+        // Si c'est juste "#", ne rien faire
+        if (href === '#') return;
 
-            const animation = (currentTime) => {
-                if (start === null) start = currentTime;
-                const timeElapsed = currentTime - start;
-                const progress = Math.min(timeElapsed / duration, 1);
+        const target = document.querySelector(href);
 
-                const easeInOutCubic = progress < 0.5
-                    ? 4 * progress * progress * progress
-                    : 1 - Math.pow(-2 * progress + 2, 3) / 2;
-
-                window.scrollTo(0, startPosition + distance * easeInOutCubic);
-
-                if (timeElapsed < duration) {
-                    requestAnimationFrame(animation);
-                }
-            };
-
-            requestAnimationFrame(animation);
+        if (target) {
+            e.preventDefault();
+            target.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
+            });
         }
     });
 });
