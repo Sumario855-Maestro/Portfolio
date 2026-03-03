@@ -121,7 +121,7 @@ body::before {
 .projects-notice {
     text-align: center;
     font-size: 0.95rem;
-    color: #f59e0b;
+    color: var(--text-secondary);
     max-width: 800px;
     margin: 0 auto 3rem;
     font-weight: 400;
