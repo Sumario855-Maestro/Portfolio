@@ -76,7 +76,8 @@ const skillsSection = document.querySelector('.skills');
 let animated = false;
 
 const observerOptions = {
-    threshold: 0.3
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
 };
 
 const observer = new IntersectionObserver((entries) => {
@@ -90,6 +91,18 @@ const observer = new IntersectionObserver((entries) => {
 
 if (skillsSection) {
     observer.observe(skillsSection);
+
+    // Fallback: si la section est déjà visible au chargement
+    const rect = skillsSection.getBoundingClientRect();
+    const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+
+    if (isVisible && !animated) {
+        // Petit délai pour s'assurer que le DOM est prêt
+        setTimeout(() => {
+            animateSkillBars();
+            animated = true;
+        }, 500);
+    }
 }
 
 // ===================================
