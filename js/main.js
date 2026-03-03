@@ -304,6 +304,42 @@ console.log('🚀 Portfolio loaded successfully!');
 console.log('💡 Tip: Try the Konami Code for a surprise!');
 
 // ===================================
+// CONTACT FORM HANDLER
+// ===================================
+const contactForm = document.getElementById('contactForm');
+
+if (contactForm) {
+    contactForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        // Récupérer les valeurs du formulaire
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const subject = document.getElementById('subject').value;
+        const message = document.getElementById('message').value;
+
+        // Créer le lien mailto
+        const mailtoLink = `mailto:mahefasumario855@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
+            `Nom: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
+        )}`;
+
+        // Ouvrir le client mail
+        window.location.href = mailtoLink;
+
+        // Feedback visuel
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const originalText = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-check"></i> Ouverture du client mail...';
+        submitBtn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+
+        setTimeout(() => {
+            submitBtn.innerHTML = originalText;
+            submitBtn.style.background = '';
+        }, 3000);
+    });
+}
+
+// ===================================
 // HERO VIDEO SPEED CONTROL
 // ===================================
 const heroVideo = document.querySelector('.hero-video');
