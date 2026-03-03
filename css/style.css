@@ -121,19 +121,11 @@ body::before {
 .projects-notice {
     text-align: center;
     font-size: 0.95rem;
-    color: var(--text-secondary);
+    color: #f59e0b;
     max-width: 800px;
     margin: 0 auto 3rem;
     font-weight: 400;
     line-height: 1.6;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
-}
-
-.projects-notice svg {
-    flex-shrink: 0;
 }
 
 .btn {
