@@ -304,39 +304,72 @@ console.log('🚀 Portfolio loaded successfully!');
 console.log('💡 Tip: Try the Konami Code for a surprise!');
 
 // ===================================
-// CONTACT FORM HANDLER
+// CONTACT FORM HANDLER (FORMSPREE)
 // ===================================
 const contactForm = document.getElementById('contactForm');
+const submitBtn = document.getElementById('submitBtn');
+const status = document.getElementById('status');
 
 if (contactForm) {
-    contactForm.addEventListener('submit', (e) => {
-        e.preventDefault();
+    async function handleSubmit(event) {
+        event.preventDefault();
 
-        // Récupérer les valeurs du formulaire
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-        const subject = document.getElementById('subject').value;
-        const message = document.getElementById('message').value;
-
-        // Créer le lien mailto
-        const mailtoLink = `mailto:mahefasumario855@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
-            `Nom: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
-        )}`;
-
-        // Ouvrir le client mail
-        window.location.href = mailtoLink;
-
-        // Feedback visuel
-        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        // État de chargement
         const originalText = submitBtn.innerHTML;
-        submitBtn.innerHTML = '<i class="fas fa-check"></i> Ouverture du client mail...';
-        submitBtn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Envoi en cours...';
+        submitBtn.disabled = true;
+        submitBtn.style.opacity = '0.7';
 
-        setTimeout(() => {
+        const data = new FormData(event.target);
+
+        try {
+            const response = await fetch(event.target.action, {
+                method: contactForm.method,
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (response.ok) {
+                // Succès
+                status.innerHTML = '<div class="status-success"><i class="fas fa-check-circle"></i> Message envoyé avec succès ! Je vous répondrai bientôt.</div>';
+                contactForm.reset();
+
+                submitBtn.innerHTML = '<i class="fas fa-check"></i> Envoyé !';
+                submitBtn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+
+                setTimeout(() => {
+                    status.innerHTML = '';
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.style.background = '';
+                    submitBtn.disabled = false;
+                    submitBtn.style.opacity = '1';
+                }, 5000);
+            } else {
+                // Erreur
+                const errorData = await response.json();
+                if (Object.hasOwn(errorData, 'errors')) {
+                    status.innerHTML = '<div class="status-error"><i class="fas fa-exclamation-circle"></i> ' + errorData['errors'].map(error => error['message']).join(', ') + '</div>';
+                } else {
+                    status.innerHTML = '<div class="status-error"><i class="fas fa-exclamation-circle"></i> Une erreur est survenue. Veuillez réessayer.</div>';
+                }
+
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                submitBtn.style.opacity = '1';
+            }
+        } catch (error) {
+            // Erreur de réseau
+            status.innerHTML = '<div class="status-error"><i class="fas fa-exclamation-circle"></i> Une erreur de réseau est survenue. Veuillez vérifier votre connexion.</div>';
+
             submitBtn.innerHTML = originalText;
-            submitBtn.style.background = '';
-        }, 3000);
-    });
+            submitBtn.disabled = false;
+            submitBtn.style.opacity = '1';
+        }
+    }
+
+    contactForm.addEventListener('submit', handleSubmit);
 }
 
 // ===================================

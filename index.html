@@ -630,7 +630,7 @@
             <p class="contact-description">Je suis toujours intéressé par de nouveaux projets et opportunités. N'hésitez pas à me contacter pour collaborer !</p>
 
             <!-- Contact Form -->
-            <form class="contact-form" id="contactForm">
+            <form class="contact-form" id="contactForm" action="https://formspree.io/f/mwvndagg" method="POST">
                 <div class="form-group">
                     <label for="name">Nom</label>
                     <input type="text" id="name" name="name" required placeholder="Votre nom">
@@ -651,9 +651,12 @@
                     <textarea id="message" name="message" rows="5" required placeholder="Votre message..."></textarea>
                 </div>
 
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn btn-primary" id="submitBtn">
                     <i class="fas fa-paper-plane"></i> Envoyer
                 </button>
+
+                <!-- Status messages -->
+                <div id="status" class="form-status"></div>
             </form>
 
             <div class="contact-direct">
