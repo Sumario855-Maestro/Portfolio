@@ -643,7 +643,15 @@
 
                 <div class="form-group">
                     <label for="subject">Sujet</label>
-                    <input type="text" id="subject" name="subject" required placeholder="Sujet de votre message">
+                    <select id="subject" name="subject" required>
+                        <option value="">Sélectionnez un sujet</option>
+                        <option value="Embauche CDI">Embauche en contrat CDI</option>
+                        <option value="Embauche Freelance">Embauche en Freelance</option>
+                        <option value="Projet Personnel">Projet Personnel</option>
+                        <option value="Collaboration">Collaboration</option>
+                        <option value="Stage">Stage</option>
+                        <option value="Autre">Autre</option>
+                    </select>
                 </div>
 
                 <div class="form-group">
