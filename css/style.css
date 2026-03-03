@@ -126,6 +126,15 @@ body::before {
     margin: 0 auto 3rem;
     font-weight: 400;
     line-height: 1.6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.projects-notice i {
+    color: #f59e0b;
+    font-size: 1rem;
 }
 
 .btn {
