@@ -1314,25 +1314,47 @@ body::before {
 
 .contact-direct-text {
     color: var(--text-secondary);
-    margin-bottom: 1rem;
+    margin-bottom: 1.5rem;
     font-size: 0.95rem;
 }
 
-.contact-email {
-    display: inline-flex;
+.contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.contact-link {
+    display: flex;
     align-items: center;
-    gap: 0.5rem;
-    color: var(--accent-color);
-    font-size: 1.1rem;
-    font-weight: 600;
+    gap: 0.75rem;
+    color: var(--text-primary);
+    font-size: 1rem;
+    font-weight: 500;
     text-decoration: none;
+    padding: 0.75rem 1rem;
+    background: var(--dark-bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
     transition: var(--transition);
 }
 
-.contact-email:hover {
-    color: var(--primary-color);
-    text-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
-    gap: 0.75rem;
+.contact-link i {
+    font-size: 1.2rem;
+    width: 24px;
+    text-align: center;
+}
+
+.contact-link:hover {
+    border-color: var(--primary-color);
+    background: rgba(37, 99, 235, 0.1);
+    transform: translateX(5px);
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.2);
+}
+
+.contact-link:hover i {
+    color: var(--accent-color);
+    text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
 }
 
 /* ===================================
@@ -1505,6 +1527,15 @@ body::before {
 
     .contact-direct {
         padding: 1.5rem;
+    }
+
+    .contact-links {
+        gap: 0.75rem;
+    }
+
+    .contact-link {
+        padding: 0.65rem 0.85rem;
+        font-size: 0.95rem;
     }
 }
 
