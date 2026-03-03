@@ -118,40 +118,14 @@ body::before {
     box-shadow: 0 0 20px rgba(37, 99, 235, 0.5);
 }
 
-.projects-disclaimer {
+.projects-notice {
     text-align: center;
     font-size: 0.95rem;
-    color: #d97706;
-    background: linear-gradient(135deg, rgba(251, 191, 36, 0.1) 0%, rgba(245, 158, 11, 0.08) 100%);
-    padding: 1.25rem 2rem;
-    border-radius: 12px;
-    border: 2px solid rgba(245, 158, 11, 0.3);
+    color: var(--text-secondary);
     max-width: 800px;
     margin: 0 auto 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    font-weight: 500;
-    box-shadow: 0 4px 12px rgba(245, 158, 11, 0.1);
-    position: relative;
-    overflow: hidden;
-}
-
-.projects-disclaimer::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, #f59e0b, #fbbf24, #f59e0b);
-}
-
-.projects-disclaimer i {
-    font-size: 1.3rem;
-    flex-shrink: 0;
-    color: #f59e0b;
+    font-weight: 400;
+    line-height: 1.6;
 }
 
 .btn {
