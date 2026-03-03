@@ -132,9 +132,8 @@ body::before {
     gap: 0.5rem;
 }
 
-.projects-notice i {
-    color: #f59e0b;
-    font-size: 1rem;
+.projects-notice svg {
+    flex-shrink: 0;
 }
 
 .btn {
